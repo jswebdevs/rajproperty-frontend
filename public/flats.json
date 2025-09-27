@@ -1,0 +1,95 @@
+[
+  {
+    "id": "FLT-20250927-001",
+    "owner": "Abdul Karim",
+    "ownerNID": "1997654321890",
+    "mobile": "01812345678",
+
+    "location": {
+      "district": "Dhaka",
+      "upazila": "Mirpur",
+      "area": "Mirpur DOHS",
+      "gpsCoordinates": "23.8223, 90.3654",
+      "googleMapLink": "https://maps.google.com/?q=23.8223,90.3654",
+      "landMarkNearby": "Near Mirpur DOHS Mosque"
+    },
+
+    "buildingDetails": {
+      "buildingName": "Shapla Heights",
+      "flatNo": "A-502",
+      "floorNo": 5,
+      "totalFloors": 10,
+      "unitPerFloor": 4,
+      "yearBuilt": 2022,
+      "constructionStatus": "Ready",
+      "liftAvailable": "Yes",
+      "generatorBackup": "Yes",
+      "parking": "1 Reserved Parking",
+      "securitySystem": "24/7 Security with CCTV"
+    },
+
+    "flatDetails": {
+      "sizeSqft": 1450,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "balconies": 2,
+      "drawingRoom": "Yes",
+      "diningRoom": "Yes",
+      "kitchen": "1 Modern Kitchen",
+      "flooring": "Tiles",
+      "facingDirection": "South",
+      "furnishing": "Semi-Furnished",
+      "details": "Spacious south-facing flat with modern design and good ventilation."
+    },
+
+    "amenities": {
+      "lift": "Yes",
+      "generator": "Yes",
+      "communityHall": "Yes",
+      "roofAccess": "Yes",
+      "gym": "No",
+      "swimmingPool": "No",
+      "garden": "Yes"
+    },
+
+    "legal": {
+      "holdingNo": "Mirpur-2025-45",
+      "utilityConnections": {
+        "electricity": "DESCO",
+        "gas": "Titas Gas",
+        "water": "WASA",
+        "sewerage": "Yes"
+      },
+      "mutationStatus": "Updated",
+      "taxStatus": "Paid till 2025",
+      "disputeStatus": "No Dispute"
+    },
+
+    "pricing": {
+      "pricePerSqft": 8000,
+      "value": 11600000,
+      "negotiable": "Yes"
+    },
+
+    "flatMedia": {
+      "featuredImage": "https://example.com/images/flat1.jpg",
+      "photos": [
+        "https://example.com/images/flat1.jpg",
+        "https://example.com/images/flat2.jpg",
+        "https://example.com/images/flat3.jpg"
+      ],
+      "videos": ["https://example.com/videos/flat1.mp4"],
+      "documents": ["https://example.com/docs/flat-deed.pdf"]
+    },
+
+    "meta": {
+      "remarks": "Ideal for small family, located in a prime area with all facilities nearby.",
+      "status": "Published",
+      "entryBy": "Nazmul",
+      "entryDate": "2025-09-27",
+      "lastUpdatedBy": "Admin",
+      "lastUpdatedAt": "2025-09-27T11:30:00Z",
+      "tags": ["Dhaka", "Flat", "Residential", "Mirpur"]
+    }
+  }
+]

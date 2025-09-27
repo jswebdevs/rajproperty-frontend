@@ -1,0 +1,117 @@
+[
+  {
+    "id": "HSE-20250927-001",
+    "owner": "Abdul Karim",
+    "ownerNID": "1987345678912",
+    "mobile": "01712345678",
+
+    "location": {
+      "district": "Rajshahi",
+      "upazila": "Boalia",
+      "mouja": "Shiroil",
+      "area": "Shiroil Colony",
+      "gpsCoordinates": "24.3742, 88.6048",
+      "googleMapLink": "https://maps.google.com/?q=24.3742,88.6048",
+      "landMarkNearby": "Near Shiroil Bus Terminal"
+    },
+
+    "legal": {
+      "holdingNo": "45/A",
+      "utilityConnections": {
+        "electricity": "Available (Prepaid Meter)",
+        "gas": "Available",
+        "water": "Rajshahi WASA",
+        "sewerage": "Connected"
+      },
+      "mutationStatus": "Updated",
+      "taxStatus": "Paid till 2025",
+      "disputeStatus": "No Dispute"
+    },
+
+    "landDetails": {
+      "regNo": "RJ-2023-12-015",
+      "landSizeKatha": 5.5,
+      "landSizeChatak": 0,
+      "totalAreaDecimal": "910 Decimal",
+      "length": "100 ft",
+      "width": "82 ft",
+      "landShape": "Square",
+      "facingDirection": "East",
+      "landClass": "Residential",
+      "needToFill": "No",
+      "details": "Prime residential plot with a well-constructed 2-storey house, fully approved by local authority."
+    },
+
+    "buildingDetails": {
+      "buildingName": "Karim Villa",
+      "floorNo": "2",
+      "totalFloors": "2",
+      "unitPerFloor": "1",
+      "yearBuilt": "2018",
+      "constructionStatus": "Completed",
+      "parking": "Yes (1 car garage + 2 open spaces)",
+      "securitySystem": "CCTV & Boundary Wall"
+    },
+
+    "flatDetails": {
+      "sizeSqft": "3200",
+      "bedrooms": "6",
+      "bathrooms": "5",
+      "balconies": "3",
+      "drawingRoom": "Yes",
+      "diningRoom": "Yes",
+      "kitchen": "2",
+      "flooring": "Marble & Tiles",
+      "facingDirection": "East",
+      "furnishing": "Semi-Furnished",
+      "details": "Spacious family home with modern design, cross-ventilation, and large living spaces."
+    },
+
+    "amenities": {
+      "lift": "No",
+      "generator": "Yes (backup for lights & fans)",
+      "communityHall": "No",
+      "roofAccess": "Yes",
+      "gym": "No",
+      "swimmingPool": "No",
+      "garden": "Yes (Front-side garden with trees)"
+    },
+
+    "roadAccess": {
+      "frontRoad": 16,
+      "sideRoad": 10,
+      "distanceFromRoad": "100m from main road",
+      "roadType": "Paved",
+      "roadFrontage": "30 ft",
+      "isDrain": "Yes",
+      "drainWidth": 4
+    },
+
+    "pricing": {
+      "pricePerSqft": 4500,
+      "value": 14400000,
+      "negotiable": "Yes"
+    },
+
+    "houseMedia": {
+      "featuredImage": "https://example.com/images/house1.jpg",
+      "photos": [
+        "https://example.com/images/house1.jpg",
+        "https://example.com/images/house2.jpg",
+        "https://example.com/images/house3.jpg"
+      ],
+      "videos": ["https://example.com/videos/house-tour.mp4"],
+      "documents": ["https://example.com/docs/house-deed.pdf"]
+    },
+
+    "meta": {
+      "remarks": "Perfect for families looking for a ready-to-move house in Rajshahi city area. Peaceful neighborhood, close to schools and shopping.",
+      "status": "Published",
+      "entryBy": "Nazmul",
+      "entryDate": "2025-09-27",
+      "lastUpdatedBy": "Admin",
+      "lastUpdatedAt": "2025-09-27T10:20:00Z",
+      "tags": ["Rajshahi", "House", "Residential", "Ready to Move"]
+    }
+  }
+]

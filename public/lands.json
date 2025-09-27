@@ -1,0 +1,80 @@
+[
+  {
+    "id": "LND-20250914-001",
+    "owner": "Shariful Islam",
+    "ownerNID": "1998456789123",
+    "mobile": "01763643564",
+
+    "location": {
+      "district": "Rajshahi",
+      "upazila": "Paba",
+      "mouja": "Harogram",
+      "area": "Harogram Bazar Area",
+      "gpsCoordinates": "24.3736, 88.6042",
+      "googleMapLink": "https://maps.google.com/?q=24.3736,88.6042",
+      "landMarkNearby": "Near Harogram High School"
+    },
+    "legal": {
+      "csMark": "CS-224",
+      "csKhatian": "Khatian-1203",
+      "bsMark": "BS-110",
+      "bsKhatian": "Khatian-2104",
+      "rsMark": "RS-98",
+      "rsKhatian": "Khatian-3120",
+      "mutationStatus": "Updated",
+      "taxStatus": "Paid till 2025",
+      "disputeStatus": "No Dispute"
+    },
+
+    "landDetails": {
+      "regNo": "RJ-2024-09-001",
+      "quantity": 1040,
+      "landSizeKatha": 6.3,
+      "landSizeChatak": 0,
+      "totalAreaDecimal": "1040 Decimal",
+      "length": "120 ft",
+      "width": "90 ft",
+      "landShape": "Rectangular",
+      "facingDirection": "South",
+      "landClass": "Residential",
+      "needToFill": "No",
+      "details": "A rectangular residential plot with good accessibility and no legal disputes."
+    },
+
+    "roadAccess": {
+      "frontRoad": 12,
+      "sideRoad": 8,
+      "distanceFromRoad": "50m from main highway",
+      "roadType": "Paved",
+      "roadFrontage": "25 ft",
+      "isDrain": "Yes",
+      "drainWidth" : 5
+    },
+
+    "pricing": {
+      "pricePerKatha": 2000000,
+      "value": 1260000000,
+      "negotiable": "Yes"
+    },
+
+    "landMedia": {
+      "featuredImage": "https://example.com/images/land1.jpg",
+      "photos": [
+        "https://example.com/images/land1.jpg",
+        "https://example.com/images/land2.jpg"
+      ],
+      "videos": ["https://example.com/videos/land1.mp4"],
+      "documents": ["https://example.com/docs/land-deed.pdf"]
+    },
+
+    "meta": {
+      "remarks": "Ideal for residential projects, close to main road.",
+      "status": "Published",
+      "entryBy": "Nazmul",
+      "entryDate": "2025-09-14",
+      "lastUpdatedBy": "Admin",
+      "lastUpdatedAt": "2025-09-14T12:45:00Z",
+      "tags": ["Rajshahi", "Residential", "Main Road Access"]
+    }
+  }
+]
