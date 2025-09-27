@@ -50,7 +50,7 @@ const MediaLibrary = ({ multiple = true, onSelect, onClose }) => {
     if (!window.confirm("Are you sure you want to delete this media?")) return;
     try {
       await axios.delete(
-        `https://rajproperty-backend-1.onrender.com//api/media/${id}`
+        `https://rajproperty-backend-1.onrender.com/api/media/${id}`
       );
       setMedia((prev) => prev.filter((item) => item._id !== id));
       setSelectedInternal((prev) => prev.filter((item) => item._id !== id));

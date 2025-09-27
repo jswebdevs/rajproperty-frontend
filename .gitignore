@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+git commands
+git add .
+git commit -m "Upgrade"
+git push
