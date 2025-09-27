@@ -19,7 +19,7 @@ const MediaLibrary = ({ multiple = true, onSelect, onClose }) => {
 
     axios
       .get(
-        `https://rajproperty-backend-1.onrender.com//api/media?page=${page}&limit=${limit}${
+        `https://rajproperty-backend-1.onrender.com/api/media?page=${page}&limit=${limit}${
           typeQuery ? `&type=${typeQuery}` : ""
         }`
       )
