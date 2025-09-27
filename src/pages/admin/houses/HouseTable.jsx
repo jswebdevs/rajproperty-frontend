@@ -6,7 +6,7 @@ const FlatTable = () => {
   const [flatsData, setFlatsData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/flats")
+    fetch("https://rajproperty-backend-1.onrender.com/api/flats")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
@@ -29,9 +29,12 @@ const FlatTable = () => {
 
     if (confirm.isConfirmed) {
       try {
-        const res = await fetch(`http://localhost:5000/api/flats/${id}`, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `https://rajproperty-backend-1.onrender.com/api/flats/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         if (!res.ok) throw new Error("Failed to delete flat");
 

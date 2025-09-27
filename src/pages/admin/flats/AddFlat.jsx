@@ -133,13 +133,16 @@ const handleSubmit = async (e) => {
 
   console.log("Final form data to submit:", finalData);
     try {
-      const res = await fetch("http://localhost:5000/api/flats", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(finalData),
-      });
+      const res = await fetch(
+        "https://rajproperty-backend-1.onrender.com/api/flats",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(finalData),
+        }
+      );
   
       if (!res.ok) {
         throw new Error(`Failed to save flat: ${res.statusText}`);

@@ -8,12 +8,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000', // Backend origin
+        target: 'https://rajproperty-backend-1.onrender.com', // Backend origin
         changeOrigin: true,
         secure: false,
       },
       '/uploads': {
-        target: 'http://localhost:5000', // Serve media files from backend
+        target: 'https://rajproperty-backend-1.onrender.com', // Serve media files from backend
         changeOrigin: true,
         secure: false,
       },

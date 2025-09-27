@@ -6,7 +6,7 @@ const LandTable = () => {
   const [landsData, setLandsData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/lands")
+    fetch("https://rajproperty-backend-1.onrender.com/api/lands")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
@@ -29,9 +29,12 @@ const LandTable = () => {
 
     if (confirm.isConfirmed) {
       try {
-        const res = await fetch(`http://localhost:5000/api/lands/${id}`, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `https://rajproperty-backend-1.onrender.com/api/lands/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         if (!res.ok) throw new Error("Failed to delete land");
 

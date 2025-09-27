@@ -23,15 +23,19 @@ const MediaUpload = () => {
     files.forEach((file) => formData.append("media", file));
 
     try {
-      await axios.post("http://localhost:5000/api/media/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-        onUploadProgress: (event) => {
-          const percentCompleted = Math.round(
-            (event.loaded * 100) / event.total
-          );
-          setProgress({ overall: percentCompleted });
-        },
-      });
+      await axios.post(
+        "https://rajproperty-backend-1.onrender.com/api/media/upload",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+          onUploadProgress: (event) => {
+            const percentCompleted = Math.round(
+              (event.loaded * 100) / event.total
+            );
+            setProgress({ overall: percentCompleted });
+          },
+        }
+      );
 
       // Redirect back to Media Library after upload
       navigate("/dashboard/media");

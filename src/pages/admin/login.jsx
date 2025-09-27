@@ -31,7 +31,9 @@ const Login = () => {
       .then((result) => {
         const user = { email: result.user.email };
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post("https://rajproperty-backend-1.onrender.com/jwt", user, {
+            withCredentials: true,
+          })
           .then((res) => {
             console.log(res.data);
           });

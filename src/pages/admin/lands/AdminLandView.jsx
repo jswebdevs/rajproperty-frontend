@@ -6,7 +6,7 @@ const AdminLandView = () => {
   const [land, setLand] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/lands/${id}`)
+    fetch(`https://rajproperty-backend-1.onrender.com/api/lands/${id}`)
       .then((res) => res.json())
       .then((data) => setLand(data));
   }, [id]);

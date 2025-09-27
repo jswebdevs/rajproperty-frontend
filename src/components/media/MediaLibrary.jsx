@@ -19,7 +19,7 @@ const MediaLibrary = ({ multiple = true, onSelect, onClose }) => {
 
     axios
       .get(
-        `http://localhost:5000/api/media?page=${page}&limit=${limit}${
+        `https://rajproperty-backend-1.onrender.com//api/media?page=${page}&limit=${limit}${
           typeQuery ? `&type=${typeQuery}` : ""
         }`
       )
@@ -49,7 +49,9 @@ const MediaLibrary = ({ multiple = true, onSelect, onClose }) => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this media?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/media/${id}`);
+      await axios.delete(
+        `https://rajproperty-backend-1.onrender.com//api/media/${id}`
+      );
       setMedia((prev) => prev.filter((item) => item._id !== id));
       setSelectedInternal((prev) => prev.filter((item) => item._id !== id));
     } catch (err) {
@@ -86,7 +88,9 @@ const MediaLibrary = ({ multiple = true, onSelect, onClose }) => {
               {item.mimeType.startsWith("image/") ||
               item.mimeType.startsWith("video/") ? (
                 <img
-                  src={`http://localhost:5000${item.thumbUrl || item.url}`}
+                  src={`https://rajproperty-backend-1.onrender.com${
+                    item.thumbUrl || item.url
+                  }`}
                   alt={item.originalName}
                   className="w-16 h-16 object-cover rounded"
                 />
@@ -132,13 +136,15 @@ const MediaLibrary = ({ multiple = true, onSelect, onClose }) => {
             <div onClick={() => toggleSelect(item)}>
               {item.mimeType.startsWith("image/") ? (
                 <img
-                  src={`http://localhost:5000${item.thumbUrl || item.url}`}
+                  src={`https://rajproperty-backend-1.onrender.com${
+                    item.thumbUrl || item.url
+                  }`}
                   alt={item.originalName}
                   className="w-full h-32 object-cover"
                 />
               ) : item.mimeType.startsWith("video/") ? (
                 <img
-                  src={`http://localhost:5000${item.thumbUrl}`}
+                  src={`https://rajproperty-backend-1.onrender.com${item.thumbUrl}`}
                   alt={item.originalName}
                   className="w-full h-32 object-cover"
                 />

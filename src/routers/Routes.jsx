@@ -83,7 +83,9 @@ const Routes = createBrowserRouter([
               </PrivateRoute>
             ),
             loader: async ({ params }) =>
-              fetch(`http://localhost:5000/api/lands/${params.id}`),
+              fetch(
+                `https://rajproperty-backend-1.onrender.com/api/lands/${params.id}`
+              ),
           },
           {
             path: "lands/:id/update",
@@ -93,16 +95,18 @@ const Routes = createBrowserRouter([
               </PrivateRoute>
             ),
             loader: async ({ params }) =>
-              fetch(`http://localhost:5000/api/lands/${params.id}`),
+              fetch(
+                `https://rajproperty-backend-1.onrender.com/api/lands/${params.id}`
+              ),
           },
           {
-            path:"flats",
-            element: <AdminFlats></AdminFlats>
+            path: "flats",
+            element: <AdminFlats></AdminFlats>,
           },
           {
             path: "addflat",
-            element: <AddFlat></AddFlat>
-          }
+            element: <AddFlat></AddFlat>,
+          },
         ],
       },
       {
@@ -112,7 +116,8 @@ const Routes = createBrowserRouter([
       {
         path: "lands",
         element: <Lands></Lands>,
-        loader: async () => fetch(`http://localhost:5000/api/lands`),
+        loader: async () =>
+          fetch(`https://rajproperty-backend-1.onrender.com/api/lands`),
       },
     ],
   },
