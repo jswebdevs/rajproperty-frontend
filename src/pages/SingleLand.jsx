@@ -113,12 +113,11 @@ const SingleLand = () => {
       </div>
       {/* Media Section */}
       <div className="mt-10 space-y-8">
-        {/* Photos */}
-        {land.media?.photos?.length > 0 && (
+        {(land.media?.photos || []).length > 0 && (
           <div>
             <h2 className="text-2xl font-semibold mb-4">Photos</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {land.media.photos.map((photo, idx) => (
+              {(land.media?.photos || []).map((photo, idx) => (
                 <img
                   key={idx}
                   src={photo.thumbUrl || photo.url}
@@ -130,12 +129,11 @@ const SingleLand = () => {
           </div>
         )}
 
-        {/* Videos */}
-        {land.media?.videos?.length > 0 && (
+        {(land.media?.videos || []).length > 0 && (
           <div>
             <h2 className="text-2xl font-semibold mb-4">Videos</h2>
             <div className="space-y-4">
-              {land.media.videos.map((video, idx) => (
+              {(land.media?.videos || []).map((video, idx) => (
                 <video key={idx} controls className="w-full rounded">
                   <source src={video.url} type="video/mp4" />
                   Your browser does not support the video tag.

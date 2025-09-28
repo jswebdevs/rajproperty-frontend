@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
+
 
 const AdminLandView = () => {
-  const { id } = useParams(); // ✅ get the id from URL
+  const { id } = useParams();
   const [land, setLand] = useState(null);
 
   useEffect(() => {
@@ -17,18 +18,26 @@ const AdminLandView = () => {
     owner,
     ownerNID,
     mobile,
-    location,
-    legal,
-    landDetails,
-    roadAccess,
-    pricing,
-    media,
-    meta,
+    location = {},
+    legal = {},
+    landDetails = {},
+    roadAccess = {},
+    pricing = {},
+    media = {},
+    meta = {},
   } = land;
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">
-      <h2 className="text-3xl font-bold text-center">Land Details</h2>
+      <div className="flex justify-between">
+        <h2 className="text-3xl font-bold text-center">Land Details</h2>
+        <Link
+          to={`http://localhost:5173/dashboard/lands/${land._id}/update`}
+          className="btn btn-accent"
+        >
+          Edit
+        </Link>
+      </div>
 
       {/* Owner Info */}
       <div className="border rounded-lg shadow p-4">
@@ -36,45 +45,49 @@ const AdminLandView = () => {
           Owner Information
         </h3>
         <p>
-          <span className="font-semibold">Owner:</span> {owner}
+          <span className="font-semibold">Owner:</span> {owner || "N/A"}
         </p>
         <p>
-          <span className="font-semibold">Mobile:</span> {mobile}
+          <span className="font-semibold">Mobile:</span> {mobile || "N/A"}
         </p>
         <p>
-          <span className="font-semibol">NID:</span> {ownerNID}{" "}
+          <span className="font-semibold">NID:</span> {ownerNID || "N/A"}
         </p>
       </div>
 
       {/* Location Info */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2 text-center">Location</h3>
         <p>
-          <span className="font-semibold">Upazila:</span> {location.upazila}
+          <span className="font-semibold">Upazila:</span>{" "}
+          {location.upazila || "N/A"}
         </p>
         <p>
-          <span className="font-semibold">Mouja:</span> {location.mouja}
+          <span className="font-semibold">Mouja:</span>{" "}
+          {location.mouja || "N/A"}
         </p>
         <p>
-          <span className="font-semibold">Area:</span> {location.area}
+          <span className="font-semibold">Area:</span> {location.area || "N/A"}
         </p>
         <p>
-          <span className="font-semibold">GPS:</span> {location.gpsCoordinates}
+          <span className="font-semibold">GPS:</span>{" "}
+          {location.gpsCoordinates || "N/A"}
         </p>
-        <p>
-          <span className="font-semibold">Google Map:</span>{" "}
-          <a
-            href={location.googleMapLink}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-accent"
-          >
-            View Map
-          </a>
-        </p>
-        <p className="mt-2 font-semibold">Nearby Landmarks:</p>
+        {location.googleMapLink && (
+          <p>
+            <span className="font-semibold">Google Map:</span>{" "}
+            <a
+              href={location.googleMapLink}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-accent"
+            >
+              View Map
+            </a>
+          </p>
+        )}
         <div className="flex flex-wrap gap-2 mt-1">
-          {location.landMarkNearby.map((lm, idx) => (
+          {(location.landMarkNearby || []).map((lm, idx) => (
             <span key={idx} className="px-2 py-1 bg-accent text-sm rounded-md">
               {lm}
             </span>
@@ -83,124 +96,134 @@ const AdminLandView = () => {
       </div>
 
       {/* Legal Info */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2 text-center">
           Legal Information
         </h3>
         <div className="grid grid-cols-3 gap-2">
           <p>
-            <span className="font-semibold">CS Mark:</span> {legal.csMark}
+            <span className="font-semibold">CS Mark:</span>{" "}
+            {legal.csMark || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">CS Khatian:</span> {legal.csKhatian}
+            <span className="font-semibold">CS Khatian:</span>{" "}
+            {legal.csKhatian || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">BS Mark:</span> {legal.bsMark}
+            <span className="font-semibold">BS Mark:</span>{" "}
+            {legal.bsMark || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">BS Khatian:</span> {legal.bsKhatian}
+            <span className="font-semibold">BS Khatian:</span>{" "}
+            {legal.bsKhatian || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">RS Mark:</span> {legal.rsMark}
+            <span className="font-semibold">RS Mark:</span>{" "}
+            {legal.rsMark || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">RS Khatian:</span> {legal.rsKhatian}
+            <span className="font-semibold">RS Khatian:</span>{" "}
+            {legal.rsKhatian || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Mutation:</span>{" "}
-            {legal.mutationStatus}
+            {legal.mutationStatus || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">Tax:</span> {legal.taxStatus}
+            <span className="font-semibold">Tax:</span>{" "}
+            {legal.taxStatus || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Dispute:</span>{" "}
-            {legal.disputeStatus}
+            {legal.disputeStatus || "N/A"}
           </p>
         </div>
       </div>
 
       {/* Land Details */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2">Land Details</h3>
         <div className="grid grid-cols-2">
           <p>
-            <span className="font-semibold">Reg No:</span> {landDetails.regNo}
+            <span className="font-semibold">Reg No:</span>{" "}
+            {landDetails.regNo || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Size:</span>{" "}
-            {landDetails.landSizeKatha} Katha, {landDetails.landSizeChatak || 0} Chatak
+            {landDetails.landSizeKatha || 0} Katha,{" "}
+            {landDetails.landSizeChatak || 0} Chatak
           </p>
           <p>
             <span className="font-semibold">Total Area (Decimal):</span>{" "}
-            {landDetails.quantity}
+            {landDetails.quantity || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Shape:</span>{" "}
-            {landDetails.landShape}
+            {landDetails.landShape || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Facing:</span>{" "}
-            {landDetails.facingDirection}
+            {landDetails.facingDirection || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Class:</span>{" "}
-            {landDetails.landClass}
+            {landDetails.landClass || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Need to Fill:</span>{" "}
-            {landDetails.needToFill}
+            {landDetails.needToFill || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Details:</span>{" "}
-            {landDetails.details}
+            {landDetails.details || "N/A"}
           </p>
         </div>
       </div>
 
       {/* Road Access */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2">Road Access</h3>
         <div className="grid grid-cols-2">
           <p>
             <span className="font-semibold">Front Road:</span>{" "}
-            {roadAccess.frontRoad} ft
+            {roadAccess.frontRoad || 0} ft
           </p>
           <p>
             <span className="font-semibold">Side Road:</span>{" "}
-            {roadAccess.sideRoad} ft
+            {roadAccess.sideRoad || 0} ft
           </p>
           <p>
             <span className="font-semibold">Road Type:</span>{" "}
-            {roadAccess.roadType}
+            {roadAccess.roadType || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">Drain:</span> {roadAccess.isDrain}
+            <span className="font-semibold">Drain:</span>{" "}
+            {roadAccess.isDrain ? "Yes" : "No"}
           </p>
         </div>
       </div>
 
       {/* Pricing Info */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2">Pricing</h3>
         <div className="grid grid-cols-3">
           <p>
             <span className="font-semibold">Price per Katha:</span> ৳{" "}
-            {pricing.pricePerKatha}
+            {pricing.pricePerKatha || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Total Value:</span> ৳{" "}
-            {pricing.value}
+            {pricing.value || "N/A"}
           </p>
           <p>
             <span className="font-semibold">Negotiable:</span>{" "}
-            {pricing.negotiable}
+            {pricing.negotiable || "N/A"}
           </p>
         </div>
       </div>
 
       {/* Media */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2">Media</h3>
 
         {/* Featured Image */}
@@ -216,11 +239,11 @@ const AdminLandView = () => {
         )}
 
         {/* Photos */}
-        {media.photos?.length > 0 && (
+        {(media.photos || []).length > 0 && (
           <div className="mb-4">
             <h4 className="font-semibold">Photos</h4>
             <div className="flex gap-2 mt-2">
-              {media.photos.map((photo) => (
+              {(media.photos || []).map((photo) => (
                 <img
                   key={photo._id}
                   src={photo.thumbUrl}
@@ -233,17 +256,17 @@ const AdminLandView = () => {
         )}
 
         {/* Videos */}
-        {media.videos?.length > 0 && (
+        {(media.videos || []).length > 0 && (
           <div className="mb-4">
             <h4 className="font-semibold">Videos</h4>
-            {media.videos.map((vid) => (
+            {(media.videos || []).map((vid) => (
               <video
                 key={vid._id}
                 controls
                 muted
                 className="w-full max-w-lg rounded shadow"
               >
-                <source src={`/uploads/${vid.url}`} type={vid.mimeType} />
+                <source src={vid.url} type={vid.mimeType} />
                 Your browser does not support the video tag.
               </video>
             ))}
@@ -251,11 +274,11 @@ const AdminLandView = () => {
         )}
 
         {/* Documents */}
-        {media.documents?.length > 0 && (
+        {(media.documents || []).length > 0 && (
           <div>
             <h4 className="font-semibold">Documents</h4>
             <ol className="list-decimal list-inside">
-              {media.documents.map((doc) => (
+              {(media.documents || []).map((doc) => (
                 <li key={doc._id}>
                   <a
                     href={doc.url}
@@ -273,25 +296,28 @@ const AdminLandView = () => {
       </div>
 
       {/* Meta Info */}
-      <div className="border rounded-lg shadow p-4 ">
+      <div className="border rounded-lg shadow p-4">
         <h3 className="text-xl font-semibold mb-2">Meta Information</h3>
         <p>
-          <span className="font-semibold">Status:</span> {meta.status}
+          <span className="font-semibold">Status:</span> {meta.status || "N/A"}
         </p>
         <p>
-          <span className="font-semibold">Remarks:</span> {meta.remarks}
+          <span className="font-semibold">Remarks:</span>{" "}
+          {meta.remarks || "N/A"}
         </p>
         <p>
           <span className="font-semibold">Entry Date:</span>{" "}
-          {new Date(meta.entryDate).toLocaleString()}
+          {meta.entryDate ? new Date(meta.entryDate).toLocaleString() : "N/A"}
         </p>
         <p>
           <span className="font-semibold">Last Updated:</span>{" "}
-          {new Date(meta.lastUpdatedAt).toLocaleString()} by{" "}
-          {meta.lastUpdatedBy}
+          {meta.lastUpdatedAt
+            ? new Date(meta.lastUpdatedAt).toLocaleString()
+            : "N/A"}{" "}
+          by {meta.lastUpdatedBy || "N/A"}
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
-          {meta.tags.map((tag, idx) => (
+          {(meta.tags || []).map((tag, idx) => (
             <span key={idx} className="px-2 py-1 bg-accent text-sm rounded-md">
               {tag}
             </span>

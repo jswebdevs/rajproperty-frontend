@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate, useLoaderData } from "react-router-dom";
+import { useParams, useNavigate, useLoaderData, Link } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -174,7 +174,15 @@ const UpdateLand = () => {
         className="max-w-5xl mx-auto p-6 bg-base-200 shadow rounded-lg space-y-6"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl font-bold text-center">Update Land</h2>
+        <div className="flex justify-between">
+          <h2 className="text-2xl font-bold text-center">Update Land</h2>
+          <button
+            onClick={handleSubmit}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors cursor-pointer"
+          >
+            Update
+          </button>
+        </div>
 
         <OwnerInfo formData={formData} handleChange={handleChange} />
         <LocationInfo formData={formData} handleChange={handleChange} />
