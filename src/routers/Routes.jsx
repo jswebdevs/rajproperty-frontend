@@ -16,6 +16,7 @@ import AdminLandView from "../pages/admin/lands/AdminLandView";
 import UpdateLand from "../pages/admin/lands/UpdateLand";
 import AdminFlats from "../pages/admin/flats/AdminFlats";
 import AddFlat from "../pages/admin/flats/AddFlat";
+import SingleLand from "../pages/SingleLand";
 
 const Routes = createBrowserRouter([
   {
@@ -118,6 +119,12 @@ const Routes = createBrowserRouter([
         element: <Lands></Lands>,
         loader: async () =>
           fetch(`https://rajproperty-backend-1.onrender.com/api/lands`),
+      },
+      {
+        path: "lands/:id",
+        element: <SingleLand></SingleLand>,
+        loader: async ({params}) =>
+          fetch(`https://rajproperty-backend-1.onrender.com/api/lands/${params.id}`),
       },
     ],
   },

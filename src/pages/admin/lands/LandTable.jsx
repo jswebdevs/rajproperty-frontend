@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 
 const LandTable = () => {
   const [landsData, setLandsData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   useEffect(() => {
     fetch("https://rajproperty-backend-1.onrender.com/api/lands")
@@ -49,6 +51,11 @@ const LandTable = () => {
     }
   };
 
+  // Pagination logic
+  const totalPages = Math.ceil(landsData.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = landsData.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div className="px-[5%] overflow-x-auto">
       <div className="flex justify-between items-center w-full my-2">
@@ -57,9 +64,11 @@ const LandTable = () => {
           Add a Land
         </Link>
       </div>
+
       <table className="min-w-full border border-gray-300 rounded-lg">
         <thead className="bg-green-700 text-white">
           <tr>
+            <th className="p-1 border">SL</th>
             <th className="p-1 border">ID</th>
             <th className="p-1 border">Featured Image</th>
             <th className="p-1 border">Owner</th>
@@ -74,8 +83,10 @@ const LandTable = () => {
           </tr>
         </thead>
         <tbody>
-          {landsData.map((land, index) => (
+          {currentItems.map((land, index) => (
             <tr key={land._id || index}>
+              {/* Serial Number */}
+              <td className="p-1 border">{startIndex + index + 1}</td>
               <td className="p-1 border">{land._id}</td>
               <td className="p-1 border">
                 {land.media?.featuredImage && (
@@ -123,6 +134,27 @@ const LandTable = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center items-center gap-2 my-4">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((p) => p - 1)}
+          className="px-3 py-1 border rounded bg-accent disabled:opacity-50 cursor-pointer"
+        >
+          Prev
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((p) => p + 1)}
+          className="px-3 py-1 border rounded bg-accent disabled:opacity-50 cursor-pointer"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
