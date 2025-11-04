@@ -1,0 +1,151 @@
+import React, { useState } from "react";
+import { useLoaderData, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
+// Card UI for a property
+function PropertyCard({ item }) {
+  const isLand = item?.landDetails;
+  const isFlat = item?.flatDetails;
+  const isHouse = item?.houseDetails;
+  const bgImage = item?.media?.featuredImage?.url
+    ? `https://backend.rajproperty.site/uploads${item.media.featuredImage.url}`
+    : "https://via.placeholder.com/400x300?text=No+Image";
+
+  return (
+    <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:ring-2 hover:ring-green-400 transition p-2 flex flex-col justify-between">
+      <div
+        className="h-40 w-full bg-cover bg-center rounded-xl mb-2"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      />
+      <div className="flex-1 flex flex-col justify-between items-center px-1 pb-2">
+        <p className="text-base font-semibold text-white mb-1">
+          {item.location?.mouja || "N/A"}
+        </p>
+        {isLand && (
+          <p className="text-sm text-gray-300">
+            {item.landDetails?.landSizeKatha || "N/A"} Katha &ndash;
+            {item.pricing?.value
+              ? ` ${item.pricing.value.toLocaleString()} BDT`
+              : ""}
+          </p>
+        )}
+        {isFlat && (
+          <p className="text-sm text-gray-300">
+            Beds: {item.flatDetails?.bed || "N/A"}, Baths:{" "}
+            {item.flatDetails?.bath || "N/A"}, Balcony:{" "}
+            {item.flatDetails?.balcony || "N/A"}
+          </p>
+        )}
+        {isHouse && (
+          <p className="text-sm text-gray-300">
+            Total Land: {item.landDetails?.landSizeKatha || "N/A"} Katha,
+            Floors: {item.landDetails?.totalFloors || "N/A"}, Units:{" "}
+            {item.houseDetails?.unitsPerFlat || "N/A"}
+          </p>
+        )}
+        <Link
+          to={`/${
+            item?.meta?.tags?.includes("Land")
+              ? "lands"
+              : item?.meta?.tags?.includes("Flat")
+              ? "flats"
+              : "houses"
+          }/${item._id}`}
+          className="mt-2 inline-block bg-green-700/90 rounded px-4 py-1 text-white font-semibold transition hover:bg-green-600/90"
+        >
+          View Details
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// Simple pagination UI
+function Pagination({ page, totalPages, onChange }) {
+  return (
+    <div className="flex gap-3 justify-center items-center py-6">
+      <button
+        onClick={() => onChange(page - 1)}
+        disabled={page === 1}
+        className="px-3 py-1 rounded bg-gray-700 text-gray-300 hover:bg-gray-500 disabled:opacity-50"
+      >
+        Prev
+      </button>
+      <span className="text-gray-400">
+        Page {page} of {totalPages}
+      </span>
+      <button
+        onClick={() => onChange(page + 1)}
+        disabled={page === totalPages}
+        className="px-3 py-1 rounded bg-gray-700 text-gray-300 hover:bg-gray-500 disabled:opacity-50"
+      >
+        Next
+      </button>
+    </div>
+  );
+}
+
+const PAGE_SIZE = 20;
+
+const FeaturedProperties = () => {
+  const properties = useLoaderData(); // Get loaded data from route
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.max(1, Math.ceil(properties.length / PAGE_SIZE));
+  const currentProperties = properties.slice(
+    (page - 1) * PAGE_SIZE,
+    page * PAGE_SIZE
+  );
+
+  return (
+    <div>
+      <Helmet>
+        <meta
+          name="description"
+          content="Browse recently added featured properties for sale in Rajshahi City, Bangladesh. Discover lands, flats, and houses selected for you by RajProperty."
+        />
+        <meta
+          name="keywords"
+          content="featured properties, RajProperty, lands, flats, houses, Rajshahi, Bangladesh, real estate, new listings"
+        />
+        <meta
+          property="og:title"
+          content="Featured Properties - RajProperty Rajshahi"
+        />
+        <meta
+          property="og:description"
+          content="Explore the newest and most attractive properties featured by RajProperty in Rajshahi City, Bangladesh. View details, prices, and locations."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <div className="px-[5%] py-10 bg-gray-900 text-white w-full overflow-hidden">
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-bold">Featured Properties</h2>
+          <p className="text-gray-400 mt-2">
+            Check out the newest properties added recently
+          </p>
+        </div>
+        {properties.length === 0 ? (
+          <p className="text-center text-gray-400">
+            No featured properties yet.
+          </p>
+        ) : (
+          <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {currentProperties.map((item) => (
+                <PropertyCard key={item._id} item={item} />
+              ))}
+            </div>
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onChange={(newPage) => setPage(newPage)}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default FeaturedProperties;

@@ -6,12 +6,11 @@ import {useNavigate } from "react-router-dom"; // 🔹 Import useNavigate
 import Swal from "sweetalert2";
 import axios from "axios";
 
+
 const Login = () => {
   const { signInUser, loading } = useContext(AuthContext);
   const [error, setError] = useState(""); // 🔴 Error message state
   const navigate = useNavigate(); // 🔹 Hook for redirection
-
-
   const from = "/dashboard";
 
   if (loading) {
@@ -31,7 +30,7 @@ const Login = () => {
       .then((result) => {
         const user = { email: result.user.email };
         axios
-          .post("https://rajproperty-backend-1.onrender.com/jwt", user, {
+          .post("https://backend.rajproperty.site/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -61,8 +60,8 @@ const Login = () => {
 
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse items-center max-w-4xl">
           <div className="text-center lg:text-left">
             <Lottie animationData={login} />
           </div>

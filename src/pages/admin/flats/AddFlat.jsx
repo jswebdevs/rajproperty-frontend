@@ -134,7 +134,7 @@ const handleSubmit = async (e) => {
   console.log("Final form data to submit:", finalData);
     try {
       const res = await fetch(
-        "https://rajproperty-backend-1.onrender.com/api/flats",
+        "https://backend.rajproperty.site/api/flats",
         {
           method: "POST",
           headers: {
@@ -177,7 +177,15 @@ const handleSubmit = async (e) => {
           className="max-w-5xl mx-auto p-6 bg-base-200 shadow rounded-lg space-y-6"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold text-center">Add a Flat</h2>
+          <div className="flex justify-between">
+            <h2 className="text-2xl font-bold text-center">Add a Flat</h2>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors cursor-pointer"
+            >
+              Save
+            </button>
+          </div>
 
           <OwnerInfo formData={formData} handleChange={handleChange} />
           <LocationInfo formData={formData} handleChange={handleChange} />

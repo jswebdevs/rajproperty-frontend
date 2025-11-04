@@ -126,7 +126,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await fetch(
-      "https://rajproperty-backend-1.onrender.com/api/lands",
+      "https://backend.rajproperty.site/api/lands",
       {
         method: "POST",
         headers: {

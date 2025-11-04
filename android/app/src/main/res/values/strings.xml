@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Raj Property</string>
+    <string name="title_activity_main">Raj Property</string>
+    <string name="package_name">site.rajproperty.myapp</string>
+    <string name="custom_url_scheme">site.rajproperty.myapp</string>
+</resources>

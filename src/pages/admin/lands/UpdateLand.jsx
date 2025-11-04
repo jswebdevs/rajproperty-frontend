@@ -136,7 +136,7 @@ const UpdateLand = () => {
 
     try {
       const { data } = await axios.put(
-        `https://rajproperty-backend-1.onrender.com/api/lands/${id}/`,
+        `https://backend.rajproperty.site/api/lands/${id}/`,
         finalData,
         {
           headers: { "Content-Type": "application/json" },

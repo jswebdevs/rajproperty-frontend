@@ -1,18 +1,55 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router";
+import { useParams, Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 
 const AdminLandView = () => {
   const { id } = useParams();
   const [land, setLand] = useState(null);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`https://rajproperty-backend-1.onrender.com/api/lands/${id}`)
+    fetch(`https://backend.rajproperty.site/api/lands/${id}`)
       .then((res) => res.json())
       .then((data) => setLand(data));
   }, [id]);
 
   if (!land) return <p className="text-center py-10">No land data found.</p>;
+
+  const handleDelete = async () => {
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "This land record will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (confirm.isConfirmed) {
+      try {
+        const res = await fetch(
+          `https://backend.rajproperty.site/api/lands/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json", // "Authorization": `Bearer ${yourToken}`, // Uncomment if needed
+            },
+          }
+        );
+        const result = await res.json();
+        if (!res.ok)
+          throw new Error(result?.message || "Failed to delete land");
+          Swal.fire("Deleted!", "The land record has been deleted.", "success");
+          navigate("/dashboard/lands");
+      } catch (err) {
+        console.error("Error deleting land:", err);
+        Swal.fire("Error", "Failed to delete land. Please try again.", "error");
+      }
+    }
+  };
+
 
   const {
     owner,
@@ -31,12 +68,24 @@ const AdminLandView = () => {
     <div className="max-w-6xl mx-auto p-6 space-y-6">
       <div className="flex justify-between">
         <h2 className="text-3xl font-bold text-center">Land Details</h2>
-        <Link
-          to={`http://localhost:5173/dashboard/lands/${land._id}/update`}
-          className="btn btn-accent"
-        >
-          Edit
-        </Link>
+        <div className="flex join">
+          <Link
+            to={`/lands/${land._id}`}
+            className="btn btn-accent join-item"
+            target="_blank"
+          >
+            View
+          </Link>
+          <Link
+            to={`/dashboard/lands/update/${land._id}`}
+            className="btn btn-primary join-item"
+          >
+            Edit
+          </Link>
+          <button className="btn btn-error join-item" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
 
       {/* Owner Info */}
@@ -231,7 +280,7 @@ const AdminLandView = () => {
           <div className="mb-4">
             <h4 className="font-semibold">Featured Image</h4>
             <img
-              src={media.featuredImage.thumbUrl}
+              src={`${media.featuredImage.thumbUrl}`}
               alt={media.featuredImage.altText || "Featured"}
               className="h-32 rounded shadow"
             />
@@ -266,7 +315,10 @@ const AdminLandView = () => {
                 muted
                 className="w-full max-w-lg rounded shadow"
               >
-                <source src={vid.url} type={vid.mimeType} />
+                <source
+                  src={`https://backend.rajproperty.site/uploads${vid.url}`}
+                  type={vid.mimeType}
+                />
                 Your browser does not support the video tag.
               </video>
             ))}

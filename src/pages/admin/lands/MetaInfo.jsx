@@ -1,5 +1,16 @@
 import React, { useContext, useEffect } from "react";
-import AuthContext from "../../../context/AuthContext"; // adjust path if needed
+import AuthContext from "../../../context/AuthContext"; // adjust the path as needed
+
+const PROPERTY_STATUS = [
+  "Sold",
+  "Published",
+  "On-hold",
+  "Pending",
+  "Draft",
+  "Rejected",
+  "Expired",
+  "Archived",
+];
 
 const MetaInfo = ({ formData, handleChange }) => {
   const { user } = useContext(AuthContext);
@@ -14,6 +25,7 @@ const MetaInfo = ({ formData, handleChange }) => {
         lastUpdatedAt: new Date().toISOString(),
         remarks: "",
         tags: [],
+        soldBy: "", // Make sure to initialize
       });
     }
   }, [user]);
@@ -48,10 +60,27 @@ const MetaInfo = ({ formData, handleChange }) => {
           value={formData.meta?.status || "Published"}
           onChange={(e) => updateMeta("status", e.target.value)}
         >
-          <option value="Published" className="bg-base-100">Published</option>
-          <option value="Draft" className="bg-base-100">Draft</option>
+          {PROPERTY_STATUS.map((status) => (
+            <option key={status} value={status} className="bg-base-100">
+              {status}
+            </option>
+          ))}
         </select>
       </div>
+
+      {/* Sold by (shown only when Sold) */}
+      {formData.meta?.status === "Sold" && (
+        <div className="flex items-center">
+          <label className="w-1/3">Sold by</label>
+          <input
+            type="text"
+            className="w-full p-2 rounded-sm border focus:outline-none focus:ring-2 focus:ring-green-500"
+            value={formData.meta?.soldBy || ""}
+            onChange={(e) => updateMeta("soldBy", e.target.value)}
+            placeholder="Enter name who sold this property"
+          />
+        </div>
+      )}
 
       {/* Tags */}
       <div className="flex items-center">

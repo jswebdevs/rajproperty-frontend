@@ -36,7 +36,7 @@ const PreviewItem = ({ file, type, onRemove }) => (
   </div>
 );
 
-const FlatMediaUpload = ({ formData, handleChange }) => {
+const HouseMediaUpload = ({ formData, handleChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("featured");
 
@@ -226,4 +226,4 @@ const FlatMediaUpload = ({ formData, handleChange }) => {
   );
 };
 
-export default memo(FlatMediaUpload);
+export default memo(HouseMediaUpload);

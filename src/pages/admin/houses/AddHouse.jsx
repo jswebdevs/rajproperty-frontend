@@ -1,7 +1,16 @@
 import { useState, useContext } from "react";
 import AuthContext from "../../../context/AuthContext";
 import Swal from "sweetalert2";
-
+import OwnerInfo from "./OwnerInfo";
+import LocationInfo from "./LocationInfo";
+import LegalInfo from "./LegalInfo";
+import LandDetails from "./LandDetails";
+import BuildingDetails from "./BuildingDetails";
+import Amenities from "./Amenities";
+import RoadAccess from "./RoadAccess";
+import Pricing from "./Pricing";
+import HouseMediaUpload from "./HouseMediaUpload";
+import MetaInfo from "./MetaInfo";
 
 
 const AddHouse = () => {
@@ -46,9 +55,10 @@ const AddHouse = () => {
         width: "",
         landShape: "",
         facingDirection: "",
-        landClass: "",
-        needToFill: "",
+        openSpace: "",
         details: "",
+        quantity: ""
+
       },
       //Building Details
       buildingDetails: {
@@ -82,17 +92,16 @@ const AddHouse = () => {
       },
 
       roadAccess: {
-        frontRoad: 16,
-        sideRoad: 10,
-        distanceFromRoad: "100m from main road",
-        roadType: "Paved",
-        roadFrontage: "30 ft",
-        isDrain: "Yes",
-        drainWidth: 4,
+        frontRoad: "",
+        sideRoad: "",
+        distanceFromRoad: "",
+        roadType: "",
+        roadFrontage: "",
+        isDrain: "",
+        drainWidth: "",
       },
 
       pricing: {
-        pricePerSqft: "",
         value: "",
         negotiable: "",
       },
@@ -144,7 +153,7 @@ const handleSubmit = async (e) => {
   console.log("Final form data to submit:", finalData);
     try {
       const res = await fetch(
-        "https://rajproperty-backend-1.onrender.com/api/houses",
+        "https://backend.rajproperty.site/api/houses",
         {
           method: "POST",
           headers: {
@@ -188,17 +197,26 @@ const handleSubmit = async (e) => {
           className="max-w-5xl mx-auto p-6 bg-base-200 shadow rounded-lg space-y-6"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold text-center">Add a House</h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-center">Add a House</h2>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors cursor-pointer"
+            >
+              Save
+            </button>
+          </div>
 
-          <OwnerInfo formData={formData} handleChange={handleChange} />
-          <LocationInfo formData={formData} handleChange={handleChange} />
-          <LegalInfo formData={formData} handleChange={handleChange} />
-          <BuildingDetails formData={formData} handleChange={handleChange} />
-          <Amenities formData={formData} handleChange={handleChange} />
-          <HouseDetails formData={formData} handleChange={handleChange} />
-          <Pricing formData={formData} handleChange={handleChange} />
-          <HouseMediaUpload formData={formData} handleChange={handleChange} />
-          <MetaInfo formData={formData} handleChange={handleChange} />
+          <OwnerInfo handleChange={handleChange} formData={formData} />
+          <LocationInfo handleChange={handleChange} formData={formData} />
+          <LegalInfo handleChange={handleChange} formData={formData} />
+          <LandDetails handleChange={handleChange} formData={formData} />
+          <BuildingDetails handleChange={handleChange} formData={formData} />
+          <Amenities handleChange={handleChange} formData={formData} />
+          <RoadAccess handleChange={handleChange} formData={formData} />
+          <Pricing handleChange={handleChange} formData={formData} />
+          <HouseMediaUpload handleChange={handleChange} formData={formData} />
+          <MetaInfo handleChange={handleChange} formData={formData} />
 
           <button
             type="submit"

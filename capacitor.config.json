@@ -1,0 +1,6 @@
+{
+  "appId": "site.rajproperty.myapp",
+  "appName": "Raj Property",
+  "webDir": "dist",
+  "bundledWebRunTime": false
+}
